@@ -5,7 +5,7 @@ dv_is_:
 dv_is_old: old
 ---
 
-is_old = `=this.dv_is_old`
+is_old = `= this.dv_is_old`
 
 #is_/new :: new 
 

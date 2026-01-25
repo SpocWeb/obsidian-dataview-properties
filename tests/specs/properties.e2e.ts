@@ -199,6 +199,20 @@ for (const option of ["default", "unflatted"]) {
 						}
 					}, manifest.id);
 				}
+				if (fileName === "merge_properties.md") {
+					await browser.executeObsidian(({ app }, pluginId) => {
+						const plugin = app.plugins.getPlugin(pluginId) as DataviewProperties;
+						if (plugin) {
+							//update the configuration here
+							plugin.settings.replaceInlineFieldsWith.enabled = true;
+							plugin.settings.unflatten = {
+								enabled: true,
+								separator: "/",
+							};
+							plugin.saveSettings();
+						}
+					}, manifest.id);
+				}
 				const content = await runTestWithFixture(fileName, fileName);
 				expect(normalizeContent(content)).toEqual(getExpectedContent(fileName));
 			});
